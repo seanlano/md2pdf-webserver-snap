@@ -1,0 +1,5 @@
+# Ignore Snappy related things
+parts/**
+prime/**
+stage/**
+snap/.snapcraft/**
