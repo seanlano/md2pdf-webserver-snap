@@ -1,20 +1,20 @@
 name: md2pdf-webserver
-version: 0.0.1
+version: 0.0.2
 summary: md2pdf server package, to render Markdown text from clients into a pretty PDF
 description: |
-    md2pdf is a little project that aims to make it easy to produce \
-    professional-looking PDF documents from Markdown files via a LaTeX template \
+    md2pdf is a little project that aims to make it easy to produce
+    professional-looking PDF documents from Markdown files via a LaTeX template
     and the help of Pandoc.
 
-    With with an appropriate template, LaTeX PDF output is undeniably the prettiest-\
-    looking way to create documents. But, learning LaTeX is hard. Markdown \
-    is much easier to use, and when used with Pandoc can still produce superb PDF \
-    documents. md2pdf makes it simple to manage having the right LaTeX templates \
-    and configuration across a whole team, by using a central server to do the PDF \
+    With with an appropriate template, LaTeX PDF output is undeniably the prettiest-
+    looking way to create documents. But, learning LaTeX is hard. Markdown
+    is much easier to use, and when used with Pandoc can still produce superb PDF
+    documents. md2pdf makes it simple to manage having the right LaTeX templates
+    and configuration across a whole team, by using a central server to do the PDF
     generation and then share the result with those who need it.
 
-    This is the server application - it might take some substatial configuration \
-    to get running correctly. See https://github.com/seanlano/md2pdf-webserver \
+    This is the server application - it might take some substatial configuration
+    to get running correctly. See https://github.com/seanlano/md2pdf-webserver
     for more information.
 
 icon: icon.svg
@@ -27,7 +27,7 @@ parts:
     python-version: python3
     source-type: git
     source: https://github.com/seanlano/md2pdf-webserver.git
-    source-tag: v0.0.1
+    source-tag: v0.0.2
     requirements: requirements.txt
     stage-packages:
       - librsvg2-bin
@@ -70,12 +70,15 @@ parts:
   static-content:
       plugin: nil
       source: https://github.com/seanlano/md2pdf-webserver.git
-      source-tag: v0.0.1
+      source-tag: v0.0.2
       override-build: |
         mkdir -p $SNAPCRAFT_PART_INSTALL/snap
         cp -r example-static/ $SNAPCRAFT_PART_INSTALL/snap/
         cp setup-chroot.sh $SNAPCRAFT_PART_INSTALL/snap/
         cp md2pdf-texlive.profile $SNAPCRAFT_PART_INSTALL/snap/
+        mkdir -p $SNAPCRAFT_PART_INSTALL/snap/html
+        cp index.html $SNAPCRAFT_PART_INSTALL/snap/html
+        cp style.css $SNAPCRAFT_PART_INSTALL/snap/html
 
   pandoc:
     plugin: nil
