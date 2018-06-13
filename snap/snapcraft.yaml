@@ -1,5 +1,5 @@
 name: md2pdf-webserver
-version: 0.0.3
+version: 0.0.4
 summary: md2pdf server package, to render Markdown text from clients into a pretty PDF
 description: |
     md2pdf is a little project that aims to make it easy to produce
@@ -27,7 +27,7 @@ parts:
     python-version: python3
     source-type: git
     source: https://github.com/seanlano/md2pdf-webserver.git
-    source-tag: v0.0.3
+    source-tag: v0.0.4
     requirements: requirements.txt
     stage-packages:
       - librsvg2-bin
@@ -63,14 +63,14 @@ parts:
     build-packages:
       - wget
     override-build: |
-      wget https://mirrors.sorengard.com/ctan/systems/texlive/tlnet/install-tl-unx.tar.gz
+      wget http://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz
       mkdir -p $SNAPCRAFT_PART_INSTALL/snap
       cp install-tl-unx.tar.gz $SNAPCRAFT_PART_INSTALL/snap/
 
   static-content:
       plugin: nil
       source: https://github.com/seanlano/md2pdf-webserver.git
-      source-tag: v0.0.3
+      source-tag: v0.0.4
       override-build: |
         mkdir -p $SNAPCRAFT_PART_INSTALL/snap
         cp -r example-static/ $SNAPCRAFT_PART_INSTALL/snap/
@@ -87,7 +87,7 @@ parts:
       - wget
       - tar
     override-build: |
-      wget https://github.com/jgm/pandoc/releases/download/2.1.3/pandoc-2.1.3-linux.tar.gz -O pandoc.tar.gz
+      wget https://github.com/jgm/pandoc/releases/download/2.2.1/pandoc-2.2.1-linux.tar.gz -O pandoc.tar.gz
       tar xvf pandoc.tar.gz --strip-components 1 --directory $SNAPCRAFT_PART_INSTALL/
 
   pandoc-crossref:
@@ -97,7 +97,7 @@ parts:
       - wget
       - tar
     override-build: |
-      wget https://github.com/lierdakil/pandoc-crossref/releases/download/v0.3.1.0/linux-ghc82-pandoc21.tar.gz -O pandoc-crossref.tar.gz
+      wget https://github.com/lierdakil/pandoc-crossref/releases/download/v0.3.2.0/linux-ghc84-pandoc22.tar.gz -O pandoc-crossref.tar.gz
       mkdir -p $SNAPCRAFT_PART_INSTALL/bin
       tar xvf pandoc-crossref.tar.gz --directory $SNAPCRAFT_PART_INSTALL/bin
 
