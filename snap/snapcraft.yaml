@@ -1,5 +1,5 @@
 name: md2pdf-webserver
-version: 0.1.0
+version: 0.1.1
 summary: md2pdf server package, to render Markdown text from clients into a pretty PDF
 description: |
     md2pdf is a little project that aims to make it easy to produce
@@ -27,7 +27,7 @@ parts:
     python-version: python3
     source-type: git
     source: https://github.com/seanlano/md2pdf-webserver.git
-    source-tag: v0.1.0
+    source-tag: v0.1.1
     requirements: requirements.txt
     stage-packages:
       - librsvg2-bin
@@ -57,11 +57,12 @@ parts:
       - ttf-ubuntu-font-family
       - ghostscript
       - fuseiso
+      - bindfs
 
   static-content:
       plugin: nil
       source: https://github.com/seanlano/md2pdf-webserver.git
-      source-tag: v0.1.0
+      source-tag: v0.1.1
       override-build: |
         mkdir -p $SNAPCRAFT_PART_INSTALL/snap
         cp -r example-static/ $SNAPCRAFT_PART_INSTALL/snap/
@@ -101,7 +102,7 @@ apps:
         daemon: simple
         restart-condition: always
         stop-timeout: 90s
-        plugs: [network-bind]
+        plugs: [fuse-support, network-bind]
 
 environment:
     LC_ALL: C
